@@ -1,7 +1,7 @@
 #include "Parameters.hh"
 #include <iostream>
 #include <cstdlib>
-#include <parallel/algorithm>
+#include <algorithm>
 #include "FastqMultiReader.hh"
 #include "FastqPrinter.hh"
 
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         std::cout << all_fastq_entries.size() << " reads loaded.\n" << std::endl;
 
         std::cout << "Sorting reads by length..." << std::endl;
-        __gnu_parallel::sort(all_fastq_entries.begin(), all_fastq_entries.end(),
+        std::sort(all_fastq_entries.begin(), all_fastq_entries.end(),
                 fastq_length_comparator);
         std::cout << "Done.\n" << std::endl;
 
@@ -41,9 +41,6 @@ int main(int argc, char *argv[])
         FastqPrinter fastq_printer(parameters.output_file);
         fastq_printer.print_fastq_entries(all_fastq_entries);
         std::cout << "Done." << std::endl;
-
-        
-
 
         std::exit(0);
     }

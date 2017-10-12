@@ -12,7 +12,7 @@ Parameters Parameters::parse(int argc, char* argv[])
     Parameters parameters;
 
     // Create options decription
-    po::options_description opts_desc("Compute statistics on sequencing data");
+    po::options_description opts_desc("Merge and sort large FASTQ files");
 
     opts_desc.add_options()
         ("help,h", "print this help message")
