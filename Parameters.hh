@@ -8,6 +8,7 @@
 struct Parameters
 {
     std::vector<std::string> fastq_files;
+    bool sort_by_decreasing_size;
     std::string output_file;
     static Parameters parse(int argc, char* argv[]);
     static void check_file_is_readable(const std::string& filepath);

@@ -5,10 +5,6 @@
 #include "FastqMultiReader.hh"
 #include "FastqPrinter.hh"
 
-bool fastq_length_comparator(const FastqEntry& fastq_entry1, const FastqEntry& fastq_entry2)
-{
-    return fastq_entry1.seq.size() > fastq_entry2.seq.size();
-}
 
 int main(int argc, char *argv[])
 {
@@ -30,7 +26,7 @@ int main(int argc, char *argv[])
 
         std::cout << "Sorting reads by length..." << std::endl;
         __gnu_parallel::sort(all_fastq_entries.begin(), all_fastq_entries.end(),
-                fastq_length_comparator);
+                parameters.sort_by_decreasing_size ? FastqEntry::decreasing_size_comp : FastqEntry::increasing_size_comp);
         std::cout << "Done.\n" << std::endl;
 
         std::cout << "Writing sorted reads..." << std::endl;

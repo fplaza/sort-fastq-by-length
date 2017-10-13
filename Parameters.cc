@@ -12,11 +12,12 @@ Parameters Parameters::parse(int argc, char* argv[])
     Parameters parameters;
 
     // Create options decription
-    po::options_description opts_desc("Merge and sort large FASTQ files");
+    po::options_description opts_desc("Merge FASTQ files and sort reads by size");
 
     opts_desc.add_options()
         ("help,h", "print this help message")
         ("fastq-files,f", po::value<std::vector<std::string> >(&parameters.fastq_files)->multitoken(), "FASTQ files to sort")
+        ("decreasing-size,r" ,po::bool_switch(&parameters.sort_by_decreasing_size), "Sort reads by decreasing size. (default: increasing size)")
         ("output-file,o", po::value<std::string>(&parameters.output_file)->required(), "Sorted FASTQ file")
         ;
 
